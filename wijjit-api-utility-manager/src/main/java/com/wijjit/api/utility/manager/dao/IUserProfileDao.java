@@ -9,7 +9,7 @@ import com.wijjit.jwt.api.security.model.UserProfile;
 @Repository
 public interface IUserProfileDao extends MongoRepository<UserProfile, String>{
 
-    @Query(value = "{'userName': ?0}")
-    UserProfile findByUserName(String userName);
+    @Query(value = "{'referralCode': ?0}")
+    UserProfile findByUserId(String userName);
 }
 

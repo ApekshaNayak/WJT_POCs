@@ -41,4 +41,13 @@ public class MongoConfiguration {
 	public String userCivicDataCollectionName() {
 		return this.userCivicDataCollectionName;
 	}
+
+	@Value("${com.wijjit.mongodb.collection.wijjit.stellar.keys:wijjit_stellar_service_account_keys}")
+	private String wijjitStellarAccountKeysCollectionName;
+
+
+	@Bean
+	public String wijjitStellarAccountKeysCollectionName() {
+		return this.wijjitStellarAccountKeysCollectionName;
+	}
 }

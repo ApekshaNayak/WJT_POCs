@@ -1,13 +1,8 @@
 package com.wijjit.api.utility.manager.controller;
 
-import com.wijjit.api.utility.manager.models.PrivateKeys;
+import com.wijjit.api.utility.manager.models.TokenType;
 import com.wijjit.api.utility.manager.service.JwtTokenCreatorService;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class JwtTokenCreatorController {
@@ -18,13 +13,14 @@ public class JwtTokenCreatorController {
 		this.creatorService = creatorService;
 	}
 
-	@RequestMapping(value = "/token/{username}", method = RequestMethod.GET)
-	public String createJwtToken(@PathVariable String username) throws InterruptedException {
-		return creatorService.createJwtWijjitToken(username);
+	@RequestMapping(value = "/token/{userId}", method = RequestMethod.GET)
+	public String createJwtToken(@PathVariable String userId) throws InterruptedException {
+		return creatorService.createJwtWijjitToken(userId, TokenType.LOGIN);
 	}
 
-	@RequestMapping(value = "/decryptPrivateKey/{username}", method = RequestMethod.GET)
-	public ResponseEntity<PrivateKeys> decryptPrivateKeyForUser(@PathVariable String username){
-		return new ResponseEntity<>(creatorService.decryptWJTKeys(username), HttpStatus.OK);
+	@RequestMapping(value = "/token/validity", method = RequestMethod.GET)
+	public String jwtTokenValidity(@RequestHeader("Username") String username) throws InterruptedException {
+		return username;
 	}
+
 }

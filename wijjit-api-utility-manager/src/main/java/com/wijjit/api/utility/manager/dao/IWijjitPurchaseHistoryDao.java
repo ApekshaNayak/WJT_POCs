@@ -10,9 +10,9 @@ import java.util.List;
 @Repository
 public interface IWijjitPurchaseHistoryDao extends MongoRepository<WijjitPurchaseHistory, String> {
 
-    @Query(value = "{'userName': ?0, 'transactionType': ?1}")
+    @Query(value = "{'userId': ?0, 'transactionType': ?1}")
     List<WijjitPurchaseHistory> findByUserName(String userName, String transactionType);
 
-    @Query(value = "{'userName': ?0}")
+    @Query(value = "{'userId': ?0}")
     List<WijjitPurchaseHistory> findByUserName(String userName);
 }
